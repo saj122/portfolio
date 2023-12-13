@@ -1,4 +1,8 @@
+Table of Contents
 ---
-title: Welcome to my blog
----
+* Computer Science
+    * Search
+        * Breadth-first
+        * Depth-first
+        * A*
 
