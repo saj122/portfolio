@@ -319,7 +319,7 @@
 				
 				thetaControl.add( effectController, "newTheta1",0.0,360.0,1 ).name("Theta1");
 				thetaControl.add( effectController, "newTheta2",0.0,180.0,1 ).name("Theta2");
-				thetaControl.add( effectController, "newTheta3",0.0,225.0,1 ).name("Theta3");
+				thetaControl.add( effectController, "newTheta3",-180.0,180.0,1 ).name("Theta3");
 				thetaControl.add( effectController, "newTheta4",0.0,360.0,1 ).name("Theta4");
 				thetaControl.add( effectController, "newTheta5",-125.0,125.0,1 ).name("Theta5");
 				thetaControl.add( effectController, "newTheta6",0.0,360.0,1 ).name("Theta6");
@@ -392,6 +392,9 @@
 
 				canvasWidth = width; 
 				canvasHeight = height;
+
+				canvas1.width = canvasWidth;
+				canvas1.height = canvasHeight;
 
 				checkDatGUI();
 				gamePad();
