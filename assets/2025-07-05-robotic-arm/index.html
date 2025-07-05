@@ -21,7 +21,6 @@
 		<script src="./TrackballControls.js"></script>
 		<script src="./tween.min.js"></script>
 		<script src="./sprintf.js"></script>
-		<script src="./leap.js"></script>
 		<script src="./Gamepad.js"></script>
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
@@ -145,7 +144,7 @@
 					base = new THREE.Mesh( geometry, basematerial );
 					scene.add( base );
 				} );	
-				stlLoader.load('/base.stl');
+				stlLoader.load('./base.stl');
 			
 				var stlLoader = new THREE.STLLoader();
 				r1 = new THREE.Object3D();
@@ -161,7 +160,7 @@
 					r1.updateMatrix(true);
 					scene.add( r1 );
 				} );	
-				stlLoader.load('/r1servo.stl');
+				stlLoader.load('./r1servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r2 = new THREE.Object3D();
@@ -177,7 +176,7 @@
 					r2.updateMatrix(true);
 					scene.add( r2 );
 				} );	
-				stlLoader.load('/r2servo.stl');
+				stlLoader.load('./r2servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r3 = new THREE.Object3D();
@@ -193,7 +192,7 @@
 					r3.updateMatrix(true);
 					scene.add( r3 );
 				} );	
-				stlLoader.load('/r3servo.stl');
+				stlLoader.load('./r3servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r4 = new THREE.Object3D();
@@ -209,7 +208,7 @@
 					r4.updateMatrix(true);
 					scene.add( r4 );
 				} );	
-				stlLoader.load('/r4servo.stl');
+				stlLoader.load('./r4servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r5 = new THREE.Object3D();
@@ -225,7 +224,7 @@
 					r5.updateMatrix(true);
 					scene.add( r5 );
 				} );	
-				stlLoader.load('/r5servo.stl');
+				stlLoader.load('./r5servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r6 = new THREE.Object3D();
@@ -241,7 +240,7 @@
 					r6.updateMatrix(true);
 					scene.add( r6 );
 				} );	
-				stlLoader.load('/robotcamera.stl');
+				stlLoader.load('./robotcamera.stl');
 	
 			    concrete = THREE.ImageUtils.loadTexture("./concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
