@@ -10,19 +10,19 @@
 		</style>
 	</head>
 	<body>
-		<script src="/lib/three.min.js"></script>
-		<script src="/lib/STLLoader.js"></script>
-		<script src="/lib/dat.gui.js"></script>
-		<script src="/lib/TypedGeometry.js"></script>
-		<script src="/lib/Detector.js"></script>
-		<script src="/lib/stats.min.js"></script>
-		<script src="/lib/OrbitControls.js"></script>
-		<script src="/lib/Coordinates.js"></script>
-		<script src="/lib/TrackballControls.js"></script>
-		<script src="/lib/tween.min.js"></script>
-		<script src="/lib/sprintf.js"></script>
-		<script src="/lib/leap.js"></script>
-		<script src="/lib/Gamepad.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/three.min.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/STLLoader.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/dat.gui.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/TypedGeometry.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/Detector.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/stats.min.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/OrbitControls.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/Coordinates.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/TrackballControls.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/tween.min.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/sprintf.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/leap.js"></script>
+		<script src="/assets/2025-07-05-robotic-arm/Gamepad.js"></script>
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 		
@@ -145,7 +145,7 @@
 					base = new THREE.Mesh( geometry, basematerial );
 					scene.add( base );
 				} );	
-				stlLoader.load('/models/stl/ascii/base.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/base.stl');
 			
 				var stlLoader = new THREE.STLLoader();
 				r1 = new THREE.Object3D();
@@ -161,7 +161,7 @@
 					r1.updateMatrix(true);
 					scene.add( r1 );
 				} );	
-				stlLoader.load('/models/stl/ascii/r1servo.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/r1servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r2 = new THREE.Object3D();
@@ -177,7 +177,7 @@
 					r2.updateMatrix(true);
 					scene.add( r2 );
 				} );	
-				stlLoader.load('/models/stl/ascii/r2servo.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/r2servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r3 = new THREE.Object3D();
@@ -193,7 +193,7 @@
 					r3.updateMatrix(true);
 					scene.add( r3 );
 				} );	
-				stlLoader.load('/models/stl/ascii/r3servo.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/r3servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r4 = new THREE.Object3D();
@@ -209,7 +209,7 @@
 					r4.updateMatrix(true);
 					scene.add( r4 );
 				} );	
-				stlLoader.load('/models/stl/ascii/r4servo.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/r4servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r5 = new THREE.Object3D();
@@ -225,7 +225,7 @@
 					r5.updateMatrix(true);
 					scene.add( r5 );
 				} );	
-				stlLoader.load('/models/stl/ascii/r5servo.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/r5servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r6 = new THREE.Object3D();
@@ -241,9 +241,9 @@
 					r6.updateMatrix(true);
 					scene.add( r6 );
 				} );	
-				stlLoader.load('/models/stl/ascii/robotcamera.stl');
+				stlLoader.load('/assets/2025-07-05-robotic-arm/robotcamera.stl');
 	
-			    concrete = THREE.ImageUtils.loadTexture("/textures/concrete.jpg");
+			    concrete = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
 				concrete.wrapS = concrete.wrapT = THREE.RepeatWrapping;
 				concrete.repeat.set(1, 1);
@@ -252,7 +252,7 @@
 				buildingFloormesh.position.z = -60;
 				scene.add( buildingFloormesh );
 				
-				var wallPaint = THREE.ImageUtils.loadTexture("/textures/wallPaint.jpg");
+				var wallPaint = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/wallPaint.jpg");
 				var wallGeometry = new THREE.BoxGeometry(6000,10000,100,32);
 				wallPaint.wrapS = wallPaint.wrapT = THREE.RepeatWrapping;
 				wallPaint.repeat.set(6, 6);
@@ -263,7 +263,7 @@
 				wallMesh.rotation.y = Math.PI/2;
 				scene.add( wallMesh );
 				
-				var wallPaint = THREE.ImageUtils.loadTexture("/textures/wallPaint.jpg");
+				var wallPaint = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/wallPaint.jpg");
 				var wallGeometry = new THREE.BoxGeometry(6000,10000,100,32);
 				wallPaint.wrapS = wallPaint.wrapT = THREE.RepeatWrapping;
 				wallPaint.repeat.set(6, 6);
@@ -274,7 +274,7 @@
 				wallMesh.rotation.y = Math.PI/2;
 				scene.add( wallMesh );
 				
-				var wallPaint = THREE.ImageUtils.loadTexture("/textures/wallPaint.jpg");
+				var wallPaint = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/wallPaint.jpg");
 				var wallGeometry = new THREE.BoxGeometry(10000,10000,100,32);
 				wallPaint.wrapS = wallPaint.wrapT = THREE.RepeatWrapping;
 				wallPaint.repeat.set(6, 6);
@@ -283,7 +283,7 @@
 				wallMesh.position.z = 5750;
 				scene.add( wallMesh );
 				
-				var wallPaint = THREE.ImageUtils.loadTexture("/textures/wallPaint.jpg");
+				var wallPaint = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/wallPaint.jpg");
 				var wallGeometry = new THREE.BoxGeometry(10000,6000,100,32);
 				wallPaint.wrapS = wallPaint.wrapT = THREE.RepeatWrapping;
 				wallPaint.repeat.set(6, 6);
@@ -294,7 +294,7 @@
 				wallMesh.rotation.x = Math.PI/2;
 				scene.add( wallMesh );
 				
-				var wallPaint = THREE.ImageUtils.loadTexture("/textures/wallPaint.jpg");
+				var wallPaint = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/wallPaint.jpg");
 				var wallGeometry = new THREE.BoxGeometry(10000,6000,100,32);
 				wallPaint.wrapS = wallPaint.wrapT = THREE.RepeatWrapping;
 				wallPaint.repeat.set(6, 6);
@@ -305,7 +305,7 @@
 				wallMesh.rotation.x = Math.PI/2;
 				scene.add( wallMesh );
 				
-				var table = THREE.ImageUtils.loadTexture("/textures/wood.jpg");
+				var table = THREE.ImageUtils.loadTexture("/assets/2025-07-05-robotic-arm/wood.jpg");
 				var tableGeometry = new THREE.BoxGeometry(750,500,50,32);
 				table.wrapS = table.wrapT = THREE.RepeatWrapping;
 				table.repeat.set(1, 1);
