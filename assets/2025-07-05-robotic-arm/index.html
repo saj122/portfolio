@@ -77,8 +77,13 @@
 
 			function init() 
 			{
-				canvasWidth = window.screen.width; 
-				canvasHeight = window.screen.height;
+				const width  = window.innerWidth || document.documentElement.clientWidth || 
+				document.body.clientWidth;
+				const height = window.innerHeight|| document.documentElement.clientHeight|| 
+				document.body.clientHeight;
+
+				canvasWidth = width; 
+				canvasHeight = height;
 				
 				scene = new THREE.Scene();
 				
@@ -90,14 +95,15 @@
 				light.position.set( 0, 0, 8000 );
 				scene.add( light );
 				
-				camera = new THREE.PerspectiveCamera(45, canvasWidth / canvasHeight, 10, 16000);
+				camera = new THREE.PerspectiveCamera(45, canvasWidth / canvasHeight, 1, 50000);
 				camera.position.set(4000,4000,3000);
 				camera.up.set(0,0,1);
 				camera.lookAt(new THREE.Vector3(0, 0, 0));
 				
-				cameraRobot = new THREE.PerspectiveCamera(55, canvasWidth / canvasHeight, 1, 16000);
+				cameraRobot = new THREE.PerspectiveCamera(55, canvasWidth / canvasHeight, 0.1, 50000);
 				
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+				renderer.setClearColor( 0xffffff, 0 );
 				renderer.setSize(canvasWidth, canvasHeight);
 				renderer.gammaInput = true;
 				renderer.gammaOutput = true;
@@ -108,8 +114,8 @@
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				stats.domElement.style.left = '0px';
+				stats.domElement.style.top = '25px';
+				stats.domElement.style.left = '25px';
 				document.body.appendChild( stats.domElement );
 				
 				var canvas1 = document.createElement('canvas');
@@ -308,7 +314,7 @@
 				var gui = new dat.GUI();
 				gui.domElement.style.position = 'absolute';
 				gui.domElement.style.top = '-50px';
-				gui.domElement.style.left = '0px';
+				gui.domElement.style.left = '150px';
 				var thetaControl = gui.addFolder("Theta Control");
 				
 				thetaControl.add( effectController, "newTheta1",0.0,360.0,1 ).name("Theta1");
@@ -379,6 +385,14 @@
 			
 			function render() 
 			{		
+				const width  = window.innerWidth || document.documentElement.clientWidth || 
+				document.body.clientWidth;
+				const height = window.innerHeight|| document.documentElement.clientHeight|| 
+				document.body.clientHeight;
+
+				canvasWidth = width; 
+				canvasHeight = height;
+
 				checkDatGUI();
 				gamePad();
 				
