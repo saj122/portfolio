@@ -24,7 +24,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 		
-			var camera,	scene, light, renderer, effectController;
+			var camera,	canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -118,7 +118,7 @@
 				stats.domElement.style.left = '25px';
 				document.body.appendChild( stats.domElement );
 				
-				var canvas1 = document.createElement('canvas');
+				canvas1 = document.createElement('canvas');
 
 				var texture1 = new THREE.Texture(canvas1);
 				texture1.needsUpdate = true;
@@ -395,6 +395,9 @@
 
 				canvas1.width = canvasWidth;
 				canvas1.height = canvasHeight;
+
+				scene.width = canvasWidth;
+				scene.height = canvasHeight;
 
 				checkDatGUI();
 				gamePad();
