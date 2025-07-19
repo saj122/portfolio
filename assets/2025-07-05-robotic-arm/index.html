@@ -355,6 +355,7 @@
 			function animate() 
 			{						
 				requestAnimationFrame( animate );
+				controls.update();
 				render();
 				stats.update(); 
 			}
@@ -408,10 +409,6 @@
 			function render() 
 			{		
 				checkDatGUI();
-
-				tcontrol.update();
-
-				console.log(r6.position);
 				
 				if(this.enableXbox == false && this.inversePath == false)
 				{
