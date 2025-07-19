@@ -115,14 +115,14 @@
 				document.body.appendChild( renderer.domElement );
 				
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
-				controls.addEventListener( 'change', render );
+				//controls.addEventListener( 'change', render );
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.6;
 				tcontrol.addEventListener( 'change', render );
 				tcontrol.addEventListener( 'dragging-changed', function ( event ) {
 					r6.updateMatrix();
-					controls.enabled = !event.value;
+					//controls.enabled = !event.value;
 				});
 				
 				stats = new Stats();
@@ -338,6 +338,7 @@
 				thetaControl.add( effectController, "newTheta4",0.0,360.0,1).name("Theta4").setValue(0.0);
 				thetaControl.add( effectController, "newTheta5",-180.0,180.0,1).name("Theta5").setValue(90.0);
 				thetaControl.add( effectController, "newTheta6",-180.0,180.0,1).name("Theta6").setValue(-90.0);
+				thetaControl.show();
 			}
 			
 			function drawHelpers() 
