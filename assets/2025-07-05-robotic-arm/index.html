@@ -72,6 +72,7 @@
 			forwardKinematics(0,0,0,0,0,0);
 			camForwardKinematics(0,0,0,0,0,0);
 			roboticMotion();
+			setupGui();
 			drawHelpers();
 			animate();
 
@@ -112,16 +113,12 @@
 				renderer.gammaInput = true;
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
-
-				setupGui();
 				
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render );
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.addEventListener( 'change', render );
-				tcontrol.setMode("translate");
-				tcontrol.setSpace("world");
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -336,6 +333,9 @@
 				thetaControl.add( effectController, "newTheta4",0.0,360.0,1).name("Theta4").setValue(0.0);
 				thetaControl.add( effectController, "newTheta5",-180.0,180.0,1).name("Theta5").setValue(90.0);
 				thetaControl.add( effectController, "newTheta6",-180.0,180.0,1).name("Theta6").setValue(-90.0);
+			
+				tcontrol.setMode("translate");
+				tcontrol.setSpace("world");
 			}
 			
 			function drawHelpers() 
