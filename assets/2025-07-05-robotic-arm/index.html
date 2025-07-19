@@ -119,21 +119,9 @@
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.6;
-				tcontrol.addEventListener( 'change', function ( event ) {
-					r6.updateMatrix();
-					animate();
-				});
+				tcontrol.addEventListener( 'change', render );
 				tcontrol.addEventListener( 'dragging-changed', function ( event ) {
-					r6.updateMatrix();
 					controls.enabled = ! event.value;
-				});
-				tcontrol.addEventListener('mouseDown', function () {
-					r6.updateMatrix();
-					controls.enabled = false;
-				});
-				tcontrol.addEventListener('mouseUp', function () {
-					r6.updateMatrix();
-					controls.enabled = true;
 				});
 				
 				stats = new Stats();
@@ -360,7 +348,6 @@
 			function animate() 
 			{						
 				requestAnimationFrame( animate );
-				controls.update();
 				render();
 				stats.update(); 
 			}
@@ -414,6 +401,8 @@
 			function render() 
 			{		
 				checkDatGUI();
+
+				tcontrol.update();
 				
 				if(this.enableXbox == false && this.inversePath == false)
 				{
