@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	canvas1, scene, light, renderer, effectController;
+			var camera,	control, canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -114,6 +114,10 @@
 				
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render );
+
+				control = new THREE.TransformControls( camera, renderer.domElement );
+				control.addEventListener( 'change', render );
+				control.setMode( "translate" );
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -246,6 +250,7 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
+					control.attach( r6 );
 					scene.add( r6 );
 				} );	
 				stlLoader.load('./models/robotcamera.stl');
@@ -390,6 +395,8 @@
 			{		
 				checkDatGUI();
 				gamePad();
+
+				control.update();
 				
 				if(this.enableXbox == false && this.inversePath == false)
 				{
