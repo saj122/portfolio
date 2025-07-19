@@ -330,6 +330,7 @@
 				gui.domElement.style.position = 'absolute';
 				gui.domElement.style.top = '25px';
 				gui.domElement.style.left = '150px';
+				gui.domElement.style.height = '196px';
 				var thetaControl = gui.addFolder("Theta Control");
 				
 				thetaControl.add( effectController, "newTheta1",0.0,360.0,1).name("Theta1").setValue(0.0);
@@ -338,7 +339,6 @@
 				thetaControl.add( effectController, "newTheta4",0.0,360.0,1).name("Theta4").setValue(0.0);
 				thetaControl.add( effectController, "newTheta5",-180.0,180.0,1).name("Theta5").setValue(90.0);
 				thetaControl.add( effectController, "newTheta6",-180.0,180.0,1).name("Theta6").setValue(-90.0);
-				thetaControl.show();
 			}
 			
 			function drawHelpers() 
