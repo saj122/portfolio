@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	control, canvas1, scene, light, renderer, effectController;
+			var camera,	tcontrol, canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -117,10 +117,10 @@
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render );
 
-				control = new THREE.TransformControls( camera, renderer.domElement );
-				control.addEventListener( 'change', render );
-				control.setMode("translate");
-				control.setSpace("world");
+				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
+				tcontrol.addEventListener( 'change', render );
+				tcontrol.setMode("translate");
+				tcontrol.setSpace("world");
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -253,8 +253,9 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
-					control.attach( r6 );
+					tcontrol.attach( r6 );
 					scene.add( r6 );
+					scene.add(tcontrol);
 				} );	
 				stlLoader.load('./models/robotcamera.stl');
 	
@@ -313,11 +314,11 @@
 				effectController = 
 				{
 					newTheta1: 0,	
-					newTheta2: 0,
-					newTheta3: 0,
-					newTheta4: 0,
-					newTheta5: -90*(Math.PI/180),
-					newTheta6: 0,
+					newTheta2: 90.0,
+					newTheta3: 0.0,
+					newTheta4: 0.0,
+					newTheta5: 90.0,
+					newTheta6: -90.0,
 					pathStart: false,
 					xbox360: false
 				};
@@ -328,12 +329,12 @@
 				gui.domElement.style.left = '150px';
 				var thetaControl = gui.addFolder("Theta Control");
 				
-				thetaControl.add( effectController, "newTheta1",0.0,360.0, 0.1 ).name("Theta1").setValue(0.0);
-				thetaControl.add( effectController, "newTheta2",0.0,180.0, 0.1 ).name("Theta2").setValue(90.0);
-				thetaControl.add( effectController, "newTheta3",-180.0,180.0, 0.1 ).name("Theta3").setValue(0.0);
-				thetaControl.add( effectController, "newTheta4",0.0,360.0, 0.1 ).name("Theta4").setValue(0.0);
-				thetaControl.add( effectController, "newTheta5",-180.0,180.0, 0.1 ).name("Theta5").setValue(90.0);
-				thetaControl.add( effectController, "newTheta6",-180.0,180.0, 0.1 ).name("Theta6").setValue(-90.0);
+				thetaControl.add( effectController, "newTheta1",0.0,360.0, 1 ).name("Theta1").setValue(0.0);
+				thetaControl.add( effectController, "newTheta2",0.0,180.0, 1 ).name("Theta2").setValue(90.0);
+				thetaControl.add( effectController, "newTheta3",-180.0,180.0, 1 ).name("Theta3").setValue(0.0);
+				thetaControl.add( effectController, "newTheta4",0.0,360.0, 1 ).name("Theta4").setValue(0.0);
+				thetaControl.add( effectController, "newTheta5",-180.0,180.0, 1 ).name("Theta5").setValue(90.0);
+				thetaControl.add( effectController, "newTheta6",-180.0,180.0, 1 ).name("Theta6").setValue(-90.0);
 			}
 			
 			function drawHelpers() 
@@ -400,6 +401,8 @@
 				gamePad();
 
 				control.update();
+
+				console.log(r6.position);
 				
 				if(this.enableXbox == false && this.inversePath == false)
 				{
