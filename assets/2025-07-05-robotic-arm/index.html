@@ -68,7 +68,6 @@
 			var i = 0;
 			
 			init();
-			setupGui
 			fillScene();
 			forwardKinematics(0,0,0,0,0,0);
 			camForwardKinematics(0,0,0,0,0,0);
@@ -113,6 +112,8 @@
 				renderer.gammaInput = true;
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
+
+				setupGui();
 				
 				controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render );
