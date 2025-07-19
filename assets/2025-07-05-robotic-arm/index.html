@@ -117,7 +117,8 @@
 
 				control = new THREE.TransformControls( camera, renderer.domElement );
 				control.addEventListener( 'change', render );
-				control.setMode( "translate" );
+				control.setMode("translate");
+				control.setSpace("world");
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
