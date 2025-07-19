@@ -153,6 +153,7 @@
 			function fillScene()
 			{		
 				var stlLoader = new THREE.STLLoader();
+				base = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					var geometry = event.content;
@@ -163,6 +164,7 @@
 				stlLoader.load('./models/base.stl');
 			
 				var stlLoader = new THREE.STLLoader();
+				r1 = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					geometry = event.content;
@@ -178,6 +180,7 @@
 				stlLoader.load('./models/r1servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
+				r2 = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					geometry = event.content;
@@ -193,6 +196,7 @@
 				stlLoader.load('./models/r2servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
+				r3 = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					geometry = event.content;
@@ -208,6 +212,7 @@
 				stlLoader.load('./models/r3servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
+				r4 = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					geometry = event.content;
@@ -223,6 +228,7 @@
 				stlLoader.load('./models/r4servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
+				r5 = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					geometry = event.content;
@@ -238,6 +244,7 @@
 				stlLoader.load('./models/r5servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
+				r6 = new THREE.Mesh();
 				stlLoader.addEventListener( 'load', function ( event ) 
 				{
 					geometry = event.content;
