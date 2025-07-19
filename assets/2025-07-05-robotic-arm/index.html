@@ -160,9 +160,6 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-
-				tcontrol.attach( r6 );
-				scene.add(tcontrol);
 			}
 						
 			function fillScene()
@@ -273,6 +270,9 @@
 					scene.add( r6 );
 				} );	
 				stlLoader.load('./models/robotcamera.stl');
+
+				tcontrol.attach( r6 );
+				scene.add(tcontrol);
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
