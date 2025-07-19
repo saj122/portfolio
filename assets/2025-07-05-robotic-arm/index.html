@@ -9,18 +9,18 @@
 		</style>
 	</head>
 	<body>
-		<script src="./three.min.js"></script>
-		<script src="./STLLoader.js"></script>
-		<script src="./dat.gui.js"></script>
-		<script src="./TypedGeometry.js"></script>
-		<script src="./Detector.js"></script>
-		<script src="./stats.min.js"></script>
-		<script src="./OrbitControls.js"></script>
-		<script src="./Coordinates.js"></script>
-		<script src="./TrackballControls.js"></script>
-		<script src="./tween.min.js"></script>
-		<script src="./sprintf.js"></script>
-		<script src="./Gamepad.js"></script>
+		<script src="./libs/three.min.js"></script>
+		<script src="./libs/STLLoader.js"></script>
+		<script src="./libs/dat.gui.js"></script>
+		<script src="./libs/TypedGeometry.js"></script>
+		<script src="./libs/Detector.js"></script>
+		<script src="./libs/stats.min.js"></script>
+		<script src="./libs/OrbitControls.js"></script>
+		<script src="./libs/Coordinates.js"></script>
+		<script src="./libs/TrackballControls.js"></script>
+		<script src="./libs/tween.min.js"></script>
+		<script src="./libs/sprintf.js"></script>
+		<script src="./libs/Gamepad.js"></script>
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
@@ -151,7 +151,7 @@
 					base = new THREE.Mesh( geometry, basematerial );
 					scene.add( base );
 				} );	
-				stlLoader.load('./base.stl');
+				stlLoader.load('./models/base.stl');
 			
 				var stlLoader = new THREE.STLLoader();
 				r1 = new THREE.Object3D();
@@ -167,7 +167,7 @@
 					r1.updateMatrix(true);
 					scene.add( r1 );
 				} );	
-				stlLoader.load('./r1servo.stl');
+				stlLoader.load('./models/r1servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r2 = new THREE.Object3D();
@@ -183,7 +183,7 @@
 					r2.updateMatrix(true);
 					scene.add( r2 );
 				} );	
-				stlLoader.load('./r2servo.stl');
+				stlLoader.load('./models/r2servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r3 = new THREE.Object3D();
@@ -199,7 +199,7 @@
 					r3.updateMatrix(true);
 					scene.add( r3 );
 				} );	
-				stlLoader.load('./r3servo.stl');
+				stlLoader.load('./models/r3servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r4 = new THREE.Object3D();
@@ -215,7 +215,7 @@
 					r4.updateMatrix(true);
 					scene.add( r4 );
 				} );	
-				stlLoader.load('./r4servo.stl');
+				stlLoader.load('./models/r4servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r5 = new THREE.Object3D();
@@ -231,7 +231,7 @@
 					r5.updateMatrix(true);
 					scene.add( r5 );
 				} );	
-				stlLoader.load('./r5servo.stl');
+				stlLoader.load('./models/r5servo.stl');
 				
 				var stlLoader = new THREE.STLLoader();
 				r6 = new THREE.Object3D();
@@ -247,9 +247,9 @@
 					r6.updateMatrix(true);
 					scene.add( r6 );
 				} );	
-				stlLoader.load('./robotcamera.stl');
+				stlLoader.load('./models/robotcamera.stl');
 	
-			    concrete = THREE.ImageUtils.loadTexture("./concrete.jpg");
+			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
 				concrete.wrapS = concrete.wrapT = THREE.RepeatWrapping;
 				concrete.repeat.set(1, 1);
@@ -258,7 +258,7 @@
 				buildingFloormesh.position.z = -60;
 				scene.add( buildingFloormesh );
 				
-				var table = THREE.ImageUtils.loadTexture("./wood.jpg");
+				var table = THREE.ImageUtils.loadTexture("./textures/wood.jpg");
 				var tableGeometry = new THREE.BoxGeometry(750,500,50,32);
 				table.wrapS = table.wrapT = THREE.RepeatWrapping;
 				table.repeat.set(1, 1);
