@@ -161,6 +161,7 @@
 
 				scene.add( mesh1 );
 
+				tcontrol.attach( r6 );
 				scene.add(tcontrol);
 			}
 						
@@ -269,7 +270,6 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
-					tcontrol.attach( r6 );
 					scene.add( r6 );
 				} );	
 				stlLoader.load('./models/robotcamera.stl');
