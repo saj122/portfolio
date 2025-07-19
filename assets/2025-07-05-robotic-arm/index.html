@@ -120,15 +120,19 @@
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.6;
 				tcontrol.addEventListener( 'change', function ( event ) {
+					r6.updateMatrix();
 					animate();
 				});
 				tcontrol.addEventListener( 'dragging-changed', function ( event ) {
+					r6.updateMatrix();
 					controls.enabled = ! event.value;
 				});
 				tcontrol.addEventListener('mouseDown', function () {
+					r6.updateMatrix();
 					controls.enabled = false;
 				});
 				tcontrol.addEventListener('mouseUp', function () {
+					r6.updateMatrix();
 					controls.enabled = true;
 				});
 				
@@ -156,6 +160,8 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
+
+				scene.add(tcontrol);
 			}
 						
 			function fillScene()
@@ -265,7 +271,6 @@
 					r6.updateMatrix(true);
 					tcontrol.attach( r6 );
 					scene.add( r6 );
-					scene.add(tcontrol);
 				} );	
 				stlLoader.load('./models/robotcamera.stl');
 	
