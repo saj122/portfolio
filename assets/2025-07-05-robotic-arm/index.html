@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	tcontrol, canvas1, scene, light, renderer, effectController;
+			var camera,	ocontrol, tcontrol, canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -114,15 +114,15 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				controls = new THREE.OrbitControls( camera, renderer.domElement );
-				//controls.addEventListener( 'change', render );
+				//ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
+				//ocontrol.addEventListener( 'change', render );
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.6;
 				tcontrol.addEventListener( 'change', render );
 				tcontrol.addEventListener( 'dragging-changed', function ( event ) {
 					r6.updateMatrix();
-					//controls.enabled = !event.value;
+					//ocontrol.enabled = !event.value;
 				});
 				
 				stats = new Stats();
@@ -149,6 +149,7 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
+				//scene.add(ocontrol);
 			}
 						
 			function fillScene()
@@ -330,7 +331,7 @@
 				gui.domElement.style.position = 'absolute';
 				gui.domElement.style.top = '25px';
 				gui.domElement.style.left = '150px';
-				gui.domElement.style.height = '196px';
+				gui.domElement.style.height = '250px';
 				var thetaControl = gui.addFolder("Theta Control");
 				
 				thetaControl.add( effectController, "newTheta1",0.0,360.0,1).name("Theta1").setValue(0.0);
