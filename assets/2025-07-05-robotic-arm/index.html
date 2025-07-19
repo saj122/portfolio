@@ -118,7 +118,19 @@
 				controls.addEventListener( 'change', render );
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
-				tcontrol.addEventListener( 'change', render );
+				tcontrol.size = 0.6;
+				tcontrol.addEventListener( 'change', function ( event ) {
+					animate();
+				});
+				tcontrol.addEventListener( 'dragging-changed', function ( event ) {
+					controls.enabled = ! event.value;
+				});
+				tcontrol.addEventListener('mouseDown', function () {
+					controls.enabled = false;
+				});
+				tcontrol.addEventListener('mouseUp', function () {
+					controls.enabled = true;
+				});
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -333,9 +345,6 @@
 				thetaControl.add( effectController, "newTheta4",0.0,360.0,1).name("Theta4").setValue(0.0);
 				thetaControl.add( effectController, "newTheta5",-180.0,180.0,1).name("Theta5").setValue(90.0);
 				thetaControl.add( effectController, "newTheta6",-180.0,180.0,1).name("Theta6").setValue(-90.0);
-			
-				tcontrol.setMode("translate");
-				tcontrol.setSpace("world");
 			}
 			
 			function drawHelpers() 
@@ -399,7 +408,6 @@
 			function render() 
 			{		
 				checkDatGUI();
-				gamePad();
 
 				tcontrol.update();
 
@@ -422,10 +430,6 @@
 					inverseKinematics(effectorPositionX,effectorPositionY,effectorPositionZ);
 					camInverseKinematics(effectorPositionX,effectorPositionY,effectorPositionZ);
 					roboticMotion();
-				}
-				else if(this.enableXbox == false && this.inversePath == true)
-				{
-				
 				}
 			
 				renderer.enableScissorTest( false );
