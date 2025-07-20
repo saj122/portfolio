@@ -219,27 +219,28 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
-				r6 = new THREE.Mesh();
 				stlLoader.load('./models/robotcamera.stl', function (geometry) 
 				{
 					var r6material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r6 = new THREE.Mesh( geometry, r6material );
+					r6.name = "r6";
 					r6.matrixAutoUpdate = false;
 					r6.position.copy(position6);
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
-				});
 
-				var tcontrol = new THREE.TransformControls( camera, renderer.domElement );
-				tcontrol.size = 0.5;
-				scene.add(r6);
-				tcontrol.attach(r6);
-				scene.add(tcontrol);
+					var tcontrol = new THREE.TransformControls( camera, renderer.domElement );
+					tcontrol.size = 0.5;
+					scene.add(r6);
+					tcontrol.attach(r6);
+					scene.add(tcontrol);
 
-				tcontrol.addEventListener('dragging-changed', function(event) {
-					ocontrol.enabled = !event.value;
+					tcontrol.addEventListener('dragging-changed', function(event) {
+						ocontrol.enabled = !event.value;
+					});
 				});
+				r6 = scene.getObjectByName("r6");
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
