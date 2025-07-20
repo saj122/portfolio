@@ -71,7 +71,7 @@
 			fillScene();
 			forwardKinematics(0,0,0,0,0,0);
 			camForwardKinematics(0,0,0,0,0,0);
-			//roboticMotion();
+			roboticMotion();
 			setupGui();
 			drawHelpers();
 			animate();
@@ -116,10 +116,6 @@
 				
 				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
 				ocontrol.addEventListener( 'change', render );
-
-				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
-				tcontrol.size = 0.6;
-				tcontrol.addEventListener( 'change', render );
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -151,18 +147,16 @@
 			function fillScene()
 			{		
 				var stlLoader = new THREE.STLLoader();
-				stlLoader.load('./models/base.stl', function ( event ) 
+				stlLoader.load('./models/base.stl', function (geometry) 
 				{
-					var geometry = event.content;
 					var basematerial = new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0x555555, specular: 0x111111, shininess: 200 } );
 					base = new THREE.Mesh( geometry, basematerial );
 					scene.add( base );
 				});
 			
 				var stlLoader = new THREE.STLLoader();
-				stlLoader.load('./models/r1servo.stl', function ( event ) 
+				stlLoader.load('./models/r1servo.stl', function (geometry) 
 				{
-					geometry = event.content;
 					var r1material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r1 = new THREE.Mesh( geometry, r1material );
 					r1.matrixAutoUpdate = false;
@@ -174,9 +168,8 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
-				stlLoader.load('./models/r2servo.stl', function ( event ) 
+				stlLoader.load('./models/r2servo.stl', function (geometry) 
 				{
-					geometry = event.content;
 					var r2material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r2 = new THREE.Mesh( geometry, r2material );
 					r2.matrixAutoUpdate = false;
@@ -188,9 +181,8 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
-				stlLoader.load('./models/r3servo.stl', function ( event ) 
+				stlLoader.load('./models/r3servo.stl', function (geometry) 
 				{
-					geometry = event.content;
 					var r3material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r3 = new THREE.Mesh( geometry, r3material );
 					r3.matrixAutoUpdate = false;
@@ -202,9 +194,8 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
-				stlLoader.load('./models/r4servo.stl', function ( event ) 
+				stlLoader.load('./models/r4servo.stl', function (geometry) 
 				{
-					geometry = event.content;
 					var r4material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r4 = new THREE.Mesh( geometry, r4material );
 					r4.matrixAutoUpdate = false;
@@ -216,9 +207,8 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();	
-				stlLoader.load('./models/r5servo.stl', function ( event ) 
+				stlLoader.load('./models/r5servo.stl', function (geometry) 
 				{
-					geometry = event.content;
 					var r5material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r5 = new THREE.Mesh( geometry, r5material );
 					r5.matrixAutoUpdate = false;
@@ -230,9 +220,8 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
-				stlLoader.load('./models/robotcamera.stl', function ( event ) 
+				stlLoader.load('./models/robotcamera.stl', function (geometry) 
 				{
-					geometry = event.content;
 					var r6material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r6 = new THREE.Mesh( geometry, r6material );
 					r6.matrixAutoUpdate = false;
@@ -241,8 +230,15 @@
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
 					scene.add(r6);
-					tcontrol.attach( r6 );
+
+					tcontrol = new THREE.TransformControls( camera, renderer.domElement );
+					tcontrol.size = 0.6;
+					tcontrol.attach(r6);
 					scene.add(tcontrol);
+
+					tcontrol.addEventListener('dragging-changed', function(event) {
+						ocontrol.enabled = !event.value;
+					});
 				});
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
