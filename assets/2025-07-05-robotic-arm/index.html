@@ -312,8 +312,21 @@
 				gui.domElement.style.top = '25px';
 				gui.domElement.style.left = '150px';
 				gui.domElement.style.height = '250px';
+				var kinControl = gui.addFolder("Kinematic Control");
+				const settings = {
+					modelOptions: "FK" 
+				};
+
+				const objSelector = kinControl.add(settings, 'modelOptions', ["FK", "IK"]).name("Select Kinematic Type");
+
+				objSelector.onChange(function(value) {
+					console.log("Selected:", value);
+					if (value === "FK") {
+					} else if (value === "IK") {
+					} 
+				});
+
 				var thetaControl = gui.addFolder("Theta Control");
-				
 				thetaControl.add( effectController, "newTheta1",-180.0,180.0,0.1).name("Theta1").setValue(0.0);
 				thetaControl.add( effectController, "newTheta2",-180.0,180.0,0.1).name("Theta2").setValue(90.0);
 				thetaControl.add( effectController, "newTheta3",-180.0,180.0,0.1).name("Theta3").setValue(0.0);
