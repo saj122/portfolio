@@ -64,6 +64,8 @@
 			var camposition6 = new THREE.Vector3();
 			var camquaternion6 = new THREE.Quaternion();
 			var camscale6 = new THREE.Vector3();
+
+			var meshWorldPosition = new THREE.Vector3();
 			
 			var i = 0;
 			
@@ -245,15 +247,15 @@
 					r6.name = "r6";
 					r6.matrixAutoUpdate = false;
 					r6.position.copy(position6);
+					meshWorldPosition.copy(position6);
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
 					scene.add(r6);
 				});
 
-				cube.position.copy(position6);
-				cube.quaternion.copy(quaternion6);
-				cube.scale.copy(scale6);
+				meshWorldPosition.y += 0.01;
+				cube.position.copy(meshWorldPosition);
 				cube.updateMatrix(true);
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
@@ -412,7 +414,7 @@
 
 				tcontrol.update();
 
-				var meshWorldPosition = new THREE.Vector3();
+				
 				cube.getWorldPosition(meshWorldPosition);
 				console.log(meshWorldPosition);
 
