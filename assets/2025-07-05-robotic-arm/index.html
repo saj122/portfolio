@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	ocontrol, tcontrol, canvas1, scene, light, renderer, effectController;
+			var camera,	cube, ocontrol, tcontrol, canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -143,9 +143,9 @@
 				scene.add( mesh1 );
 				//scene.add(ocontrol);
 
-				const geometry = new THREE.BoxGeometry( 100, 100, 100 ); 
-				const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
-				const cube = new THREE.Mesh( geometry, material ); 
+				const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
+				const material = new THREE.MeshBasicMaterial( {color: 0x00ff00, opacity: 0.0} ); 
+				cube = new THREE.Mesh( geometry, material ); 
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
@@ -248,6 +248,11 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
+					cube.matrixAutoUpdate = false;
+					cube.position.copy(position6);
+					cube.quaternion.copy(quaternion6);
+					cube.scale.copy(scale6);
+					cube.updateMatrix(true);
 					scene.add(r6);
 				});
 	
@@ -406,26 +411,11 @@
 				checkDatGUI();
 
 				tcontrol.update();
-				
-				/*if(this.enableXbox == false && this.inversePath == false)
-				{
-					forwardKinematics( R1, R2, R3, R4, R5, R6 );
-					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
-					roboticMotion();
-				}					
-				else if(this.enableXbox == false && this.inversePath == false)
-				{
-					inverseKinematics(hand.palmPosition[0]*3,hand.palmPosition[2]*3,hand.palmPosition[1]*3);
-					camInverseKinematics(hand.palmPosition[0]*3,hand.palmPosition[2]*3,hand.palmPosition[1]*3);
-					roboticMotion();
-				}
-				else if(this.enableXbox == true && this.inversePath == false)
-				{
-					inverseKinematics(effectorPositionX,effectorPositionY,effectorPositionZ);
-					camInverseKinematics(effectorPositionX,effectorPositionY,effectorPositionZ);
-					roboticMotion();
-				}*/
-			
+
+				forwardKinematics( R1, R2, R3, R4, R5, R6 );
+				camForwardKinematics( R1, R2, R3, R4, R5, R6 );
+				roboticMotion();
+							
 				renderer.enableScissorTest( false );
 				renderer.setViewport( 0, 0, window.innerWidth, window.innerHeight );
 				renderer.clear();
