@@ -232,6 +232,7 @@
 					var r6material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
 					r6 = new THREE.Mesh( geometry, r6material );
 					r6.name = "r6";
+					r5.matrixAutoUpdate = false;
 					r6.position.copy(position6);
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
@@ -241,10 +242,10 @@
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
-				//r6.position.copy(position6);
-				//r6.quaternion.copy(quaternion6);
-				//r6.scale.copy(scale6);
-				//r6.updateMatrix(true);
+				r6.position.copy(position6);
+				r6.quaternion.copy(quaternion6);
+				r6.scale.copy(scale6);
+				r6.updateMatrix(true);
 				tcontrol.attach(r6);
 				scene.add(tcontrol);
 
