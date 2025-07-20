@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	cube, ocontrol, tcontrol, canvas1, scene, light, renderer, effectController;
+			var camera,	ocontrol, tcontrol, canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -116,8 +116,8 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				//ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
-				//ocontrol.addEventListener( 'change', render );
+				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
+				ocontrol.addEventListener( 'change', render );
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -143,18 +143,16 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-				//scene.add(ocontrol);
+				scene.add(ocontrol);
 
-				const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
+				const geometry = new THREE.BoxGeometry( 100, 100, 100 ); 
 				const material = new THREE.MeshBasicMaterial( {color: 0x00ff00, opacity: 0.0} ); 
-				cube = new THREE.Mesh( geometry, material ); 
+				const cube = new THREE.Mesh( geometry, material ); 
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
 				tcontrol.attach(cube);
 				scene.add(tcontrol);
-
-				tcontrol.addEventListener( 'change', render );
 			}
 						
 			function fillScene()
@@ -247,16 +245,11 @@
 					r6.name = "r6";
 					r6.matrixAutoUpdate = false;
 					r6.position.copy(position6);
-					meshWorldPosition.copy(position6);
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
 					scene.add(r6);
 				});
-
-				meshWorldPosition.y += 0.01;
-				cube.position.copy(meshWorldPosition);
-				cube.updateMatrix(true);
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
@@ -414,14 +407,13 @@
 
 				tcontrol.update();
 
-				
 				cube.getWorldPosition(meshWorldPosition);
 				console.log(meshWorldPosition);
-
+				
 				forwardKinematics( R1, R2, R3, R4, R5, R6 );
 				camForwardKinematics( R1, R2, R3, R4, R5, R6 );
 				roboticMotion();
-							
+			
 				renderer.enableScissorTest( false );
 				renderer.setViewport( 0, 0, window.innerWidth, window.innerHeight );
 				renderer.clear();
