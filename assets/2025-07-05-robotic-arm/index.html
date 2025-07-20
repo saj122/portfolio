@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	cube, ocontrol, tcontrol, canvas1, scene, light, renderer, effectController;
+			var camera,	cube, tcontrol, canvas1, scene, light, renderer, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -64,8 +64,6 @@
 			var camposition6 = new THREE.Vector3();
 			var camquaternion6 = new THREE.Quaternion();
 			var camscale6 = new THREE.Vector3();
-
-			var meshWorldPosition = new THREE.Vector3();
 			
 			var i = 0;
 			
@@ -116,9 +114,6 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
-				ocontrol.addEventListener( 'change', render );
-				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
 				stats.domElement.style.top = '25px';
@@ -143,7 +138,6 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-				scene.add(ocontrol);
 
 				const geometry = new THREE.BoxGeometry( 100, 100, 100 ); 
 				const material = new THREE.MeshBasicMaterial( {color: 0x00ff00, opacity: 0.0} ); 
@@ -250,6 +244,9 @@
 					r6.updateMatrix(true);
 					scene.add(r6);
 				});
+
+				cube.position.copy(position6);
+				cube.position.y += 0.05;
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
