@@ -246,6 +246,7 @@
 
 					tcontrol.addEventListener('dragging-changed', function(event) {
 						ocontrol.enabled = !event.value;
+						r6.updateMatrix();
 					});
 				});
 
