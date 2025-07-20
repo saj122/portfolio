@@ -114,8 +114,8 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
-				ocontrol.addEventListener( 'change', render );
+				//ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
+				//ocontrol.addEventListener( 'change', render );
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -141,7 +141,7 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-				scene.add(ocontrol);
+				//scene.add(ocontrol);
 			}
 						
 			function fillScene()
@@ -246,7 +246,7 @@
 				scene.add(tcontrol);
 
 				tcontrol.addEventListener('dragging-changed', function(event) {
-					ocontrol.enabled = !event.value;
+					//ocontrol.enabled = !event.value;
 				});
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
