@@ -248,13 +248,13 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
-					cube.matrixAutoUpdate = false;
-					cube.position.copy(position6);
-					cube.quaternion.copy(quaternion6);
-					cube.scale.copy(scale6);
-					cube.updateMatrix(true);
 					scene.add(r6);
 				});
+
+				cube.position.copy(position6);
+				cube.quaternion.copy(quaternion6);
+				cube.scale.copy(scale6);
+				cube.updateMatrix(true);
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
@@ -411,6 +411,10 @@
 				checkDatGUI();
 
 				tcontrol.update();
+
+				var meshWorldPosition = new THREE.Vector3();
+				cube.getWorldPosition(meshWorldPosition);
+				console.log(meshWorldPosition);
 
 				forwardKinematics( R1, R2, R3, R4, R5, R6 );
 				camForwardKinematics( R1, R2, R3, R4, R5, R6 );
