@@ -71,6 +71,7 @@
 			fillScene();
 			forwardKinematics(0,0,0,0,0,0);
 			camForwardKinematics(0,0,0,0,0,0);
+			roboticMotion();
 			setupGui();
 			drawHelpers();
 			animate();
@@ -146,6 +147,7 @@
 			function fillScene()
 			{		
 				var stlLoader = new THREE.STLLoader();
+				base = new THREE.Object3D();
 				stlLoader.load('./models/base.stl', function (geometry) 
 				{
 					var basematerial = new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0x555555, specular: 0x111111, shininess: 200 } );
@@ -154,6 +156,7 @@
 				});
 			
 				var stlLoader = new THREE.STLLoader();
+				r1 = new THREE.Object3D();
 				stlLoader.load('./models/r1servo.stl', function (geometry) 
 				{
 					var r1material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -167,6 +170,7 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
+				r2 = new THREE.Object3D();
 				stlLoader.load('./models/r2servo.stl', function (geometry) 
 				{
 					var r2material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -180,6 +184,7 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
+				r3 = new THREE.Object3D();
 				stlLoader.load('./models/r3servo.stl', function (geometry) 
 				{
 					var r3material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -193,6 +198,7 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();
+				r4 = new THREE.Object3D();
 				stlLoader.load('./models/r4servo.stl', function (geometry) 
 				{
 					var r4material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -206,6 +212,7 @@
 				});
 				
 				var stlLoader = new THREE.STLLoader();	
+				r5 = new THREE.Object3D();
 				stlLoader.load('./models/r5servo.stl', function (geometry) 
 				{
 					var r5material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -230,11 +237,11 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
+					scene.add(r6);
 				});
 
 				var tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
-				scene.add(r6);
 				tcontrol.attach(r6);
 				scene.add(tcontrol);
 
