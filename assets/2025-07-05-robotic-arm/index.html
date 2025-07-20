@@ -114,8 +114,8 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				//ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
-				//ocontrol.addEventListener( 'change', render );
+				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
+				ocontrol.addEventListener( 'change', render );
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.6;
@@ -145,25 +145,22 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-				//scene.add(ocontrol);
+				scene.add(ocontrol);
 			}
 						
 			function fillScene()
 			{		
 				var stlLoader = new THREE.STLLoader();
-				base = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				stlLoader.load('./models/base.stl', function ( event ) 
 				{
 					var geometry = event.content;
 					var basematerial = new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0x555555, specular: 0x111111, shininess: 200 } );
 					base = new THREE.Mesh( geometry, basematerial );
 					scene.add( base );
-				} );	
-				stlLoader.load('./models/base.stl');
+				});
 			
 				var stlLoader = new THREE.STLLoader();
-				r1 = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				stlLoader.load('./models/r1servo.stl', function ( event ) 
 				{
 					geometry = event.content;
 					var r1material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -174,12 +171,10 @@
 					r1.scale.copy(scale);
 					r1.updateMatrix(true);
 					scene.add( r1 );
-				} );	
-				stlLoader.load('./models/r1servo.stl');
+				});
 				
 				var stlLoader = new THREE.STLLoader();
-				r2 = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				stlLoader.load('./models/r2servo.stl', function ( event ) 
 				{
 					geometry = event.content;
 					var r2material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -190,12 +185,10 @@
 					r2.scale.copy(scale2);
 					r2.updateMatrix(true);
 					scene.add( r2 );
-				} );	
-				stlLoader.load('./models/r2servo.stl');
+				});
 				
 				var stlLoader = new THREE.STLLoader();
-				r3 = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				stlLoader.load('./models/r3servo.stl', function ( event ) 
 				{
 					geometry = event.content;
 					var r3material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -206,12 +199,10 @@
 					r3.scale.copy(scale3);
 					r3.updateMatrix(true);
 					scene.add( r3 );
-				} );	
-				stlLoader.load('./models/r3servo.stl');
+				});
 				
 				var stlLoader = new THREE.STLLoader();
-				r4 = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				stlLoader.load('./models/r4servo.stl', function ( event ) 
 				{
 					geometry = event.content;
 					var r4material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -222,12 +213,10 @@
 					r4.scale.copy(scale4);
 					r4.updateMatrix(true);
 					scene.add( r4 );
-				} );	
-				stlLoader.load('./models/r4servo.stl');
+				});
 				
-				var stlLoader = new THREE.STLLoader();
-				r5 = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				var stlLoader = new THREE.STLLoader();	
+				stlLoader.load('./models/r5servo.stl', function ( event ) 
 				{
 					geometry = event.content;
 					var r5material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -238,12 +227,10 @@
 					r5.scale.copy(scale5);
 					r5.updateMatrix(true);
 					scene.add( r5 );
-				} );	
-				stlLoader.load('./models/r5servo.stl');
+				});
 				
 				var stlLoader = new THREE.STLLoader();
-				r6 = new THREE.Object3D();
-				stlLoader.addEventListener( 'load', function ( event ) 
+				stlLoader.load('./models/robotcamera.stl', function ( event ) 
 				{
 					geometry = event.content;
 					var r6material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
@@ -256,8 +243,7 @@
 					scene.add(r6);
 					tcontrol.attach( r6 );
 					scene.add(tcontrol);
-				} );	
-				stlLoader.load('./models/robotcamera.stl');
+				});
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
