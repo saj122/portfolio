@@ -26,7 +26,7 @@
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
 			var camera,	ocontrol, canvas1, scene, light, renderer, effectController;
-			var base, r1, r2, r3, r4, r5, r6, r6m, building, concrete;		
+			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
 			var r11, r21, r31, r12, r22, r32, r13, r23, r33;
@@ -223,15 +223,14 @@
 				stlLoader.load('./models/robotcamera.stl', function (geometry) 
 				{
 					var r6material = new THREE.MeshPhongMaterial( { ambient: 0xFF5533, color: 0xFF5533, specular: 0x111111, shininess: 200 } );
-					r6m = new THREE.Mesh( geometry, r6material );
-					r6m.matrixAutoUpdate = false;
-					r6m.position.copy(position6);
-					r6m.quaternion.copy(quaternion6);
-					r6m.scale.copy(scale6);
-					r6m.updateMatrix(true);
+					r6 = new THREE.Mesh( geometry, r6material );
+					r6.matrixAutoUpdate = false;
+					r6.position.copy(position6);
+					r6.quaternion.copy(quaternion6);
+					r6.scale.copy(scale6);
+					r6.updateMatrix(true);
 				});
 
-				r6 = r6m.clone();
 				var tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
 				scene.add(r6);
