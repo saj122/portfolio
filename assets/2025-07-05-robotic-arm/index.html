@@ -114,15 +114,12 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
-				ocontrol.addEventListener( 'change', render );
+				//ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
+				//ocontrol.addEventListener( 'change', render );
 
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.6;
 				tcontrol.addEventListener( 'change', render );
-				tcontrol.addEventListener( 'dragging-changed', function ( event ) {
-					ocontrol.enabled = !event.value;
-				});
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -148,8 +145,7 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-				scene.add(tcontrol);
-				scene.add(ocontrol);
+				//scene.add(ocontrol);
 			}
 						
 			function fillScene()
@@ -257,8 +253,9 @@
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
+					scene.add(r6);
 					tcontrol.attach( r6 );
-					scene.add( r6 );
+					scene.add(tcontrol);
 				} );	
 				stlLoader.load('./models/robotcamera.stl');
 	
