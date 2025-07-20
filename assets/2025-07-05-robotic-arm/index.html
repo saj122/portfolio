@@ -114,8 +114,8 @@
 				renderer.gammaOutput = true;
 				document.body.appendChild( renderer.domElement );
 				
-				ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
-				ocontrol.addEventListener( 'change', render );
+				//ocontrol = new THREE.OrbitControls( camera, renderer.domElement );
+				//ocontrol.addEventListener( 'change', render );
 				
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -141,7 +141,7 @@
 				mesh1.rotation.y = Math.PI;
 
 				scene.add( mesh1 );
-				scene.add(ocontrol);
+				//scene.add(ocontrol);
 
 				const geometry = new THREE.BoxGeometry( 100, 100, 100 ); 
 				const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
@@ -152,9 +152,7 @@
 				tcontrol.attach(cube);
 				scene.add(tcontrol);
 
-				tcontrol.addEventListener('dragging-changed', function(event) {
-					ocontrol.enabled = !event.value;
-				});
+				tcontrol.addEventListener( 'change', render );
 			}
 						
 			function fillScene()
