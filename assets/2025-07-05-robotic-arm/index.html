@@ -286,21 +286,7 @@
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
 				objSelector.onChange(function(value) {
-					if(value === 'FK') {
-						cube.position.x = 0;
-						cube.position.y = 0;
-						cube.position.z = 0;
-						cube.updateMatrix(true);
-						animate();
-						flag = true;
-					} else if(value === 'IK') {
-						if(flag) {
-							cube.position.copy(position6);
-							cube.updateMatrix(true);
-							flag = false;
-						}
-						animate();
-					}
+					animate();
 				});
 
 				var thetaControl = gui.addFolder("Theta Control");
