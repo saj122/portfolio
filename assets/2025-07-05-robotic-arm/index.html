@@ -320,17 +320,10 @@
 				gui.domElement.style.height = '250px';
 				var kinControl = gui.addFolder("Kinematic Control");
 				settingsController = {
-					modelOptions: "FK" 
+					modelOptions: "IK" 
 				};
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Kinematic Type");
-
-				objSelector.onChange(function(value) {
-					console.log("Selected:", value);
-					if (value === "FK") {
-					} else if (value === "IK") {
-					} 
-				});
 
 				var thetaControl = gui.addFolder("Theta Control");
 				thetaControl.add( effectController, "newTheta1",-180.0,180.0,0.1).name("Theta1").setValue(0.0);
