@@ -242,10 +242,6 @@
 					scene.add(r6);
 				});
 
-				position7 = position6;
-				position7.z += 50;
-				cube.position.copy(position7);
-				cube.updateMatrix(true);
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
@@ -357,10 +353,6 @@
 				R4 = (effectController.newTheta4)*(Math.PI/180);
 				R5 = (effectController.newTheta5)*(Math.PI/180);
 				R6 = (effectController.newTheta6)*(Math.PI/180);
-				
-				this.inversePath = effectController.pathStart;
-								
-				this.enableXbox = effectController.xbox360;
 			}
 			
 			function gamePad()
@@ -396,9 +388,7 @@
 			}
 			
 			function render() 
-			{		
-				tcontrol.update();
-				
+			{						
 				if(settingsController.modelOptions === 'FK') {
 					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
@@ -631,7 +621,7 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 
-				position7 = position6;
+				position7.copy(position6);
 				position7.z += 50;
 				cube.position.copy(position7);
 				cube.updateMatrix(true);
