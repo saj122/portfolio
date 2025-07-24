@@ -404,12 +404,16 @@
 				checkDatGUI();
 
 				tcontrol.update();
-
-				console.log(settingsController);
 				
-				forwardKinematics( R1, R2, R3, R4, R5, R6 );
-				camForwardKinematics( R1, R2, R3, R4, R5, R6 );
-				roboticMotion();
+				if(settingsController.modelOptions === 'FK') {
+					forwardKinematics( R1, R2, R3, R4, R5, R6 );
+					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
+					roboticMotion();
+				} else if(settingsController.modelOptions === 'IK') {
+					inverseKinematics(cube.position.x, cube.position.y, cude.position.z);
+					camInverseKinematics(cube.position.x, cube.position.y, cude.position.z);
+					roboticMotion();
+				}
 			
 				renderer.enableScissorTest( false );
 				renderer.setViewport( 0, 0, window.innerWidth, window.innerHeight );
