@@ -70,10 +70,10 @@
 			var i = 0;
 			
 			init();
+			fillScene();
 			forwardKinematics(0,90*(Math.PI/180),0,0,90*(Math.PI/180),-90*(Math.PI/180));
 			camForwardKinematics(0,90*(Math.PI/180),0,0,90*(Math.PI/180),-90*(Math.PI/180));
 			roboticMotion();
-			fillScene();
 			setupGui();
 			drawHelpers();
 			animate();
