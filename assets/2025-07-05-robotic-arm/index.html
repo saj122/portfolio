@@ -241,7 +241,7 @@
 				});
 
 				cube.position.copy(position6);
-				cube.position.z += 50;
+				cube.position.z += 60;
 				cube.updateMatrix(true);
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
@@ -323,7 +323,7 @@
 					modelOptions: "IK" 
 				};
 
-				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Kinematic Type");
+				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
 
 				var thetaControl = gui.addFolder("Theta Control");
 				thetaControl.add( effectController, "newTheta1",-180.0,180.0,0.1).name("Theta1").setValue(0.0);
@@ -627,9 +627,6 @@
 				r6.quaternion.copy(quaternion6);
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
-
-				cube.position.z += 50;
-				cube.updateMatrix(true);
 				
 				cameraRobot.position.copy(camposition6);
 				cameraRobot.quaternion.copy(camquaternion6);
