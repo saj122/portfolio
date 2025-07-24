@@ -353,13 +353,12 @@
 			function render() 
 			{						
 				if(settingsController.modelOptions === 'FK') {
-					cube.attach(r6);
 					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
+					cube.position.copy(position6);
 					roboticMotion();
 				} else if(settingsController.modelOptions === 'IK') {
-					cube.removeFromParent();
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					roboticMotion();
