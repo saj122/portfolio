@@ -401,11 +401,10 @@
 			
 			function render() 
 			{		
-				checkDatGUI();
-
 				tcontrol.update();
 				
 				if(settingsController.modelOptions === 'FK') {
+					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
 					roboticMotion();
@@ -636,7 +635,6 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 
-				cube.position.copy(position6);
 				cube.position.z += 50;
 				cube.updateMatrix(true);
 				
