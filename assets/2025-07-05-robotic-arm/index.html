@@ -240,6 +240,15 @@
 					scene.add(r6);
 				});
 
+				cube.position.copy(position6);
+				cube.position.y += 0.05;
+				cube.updateMatrix(true);
+				scene.add(cube);
+				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
+				tcontrol.size = 0.5;
+				tcontrol.attach(cube);
+				scene.add(tcontrol);
+
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
 				concrete.wrapS = concrete.wrapT = THREE.RepeatWrapping;
@@ -624,13 +633,8 @@
 				r6.updateMatrix(true);
 
 				cube.position.copy(position6);
-				cube.position.y += 0.05;
+				cube.position.y += 1;
 				cube.updateMatrix(true);
-				scene.add(cube);
-				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
-				tcontrol.size = 0.5;
-				tcontrol.attach(cube);
-				scene.add(tcontrol);
 				
 				cameraRobot.position.copy(camposition6);
 				cameraRobot.quaternion.copy(camquaternion6);
