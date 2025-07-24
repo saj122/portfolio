@@ -25,7 +25,7 @@
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
-			var camera,	cube, tcontrol, canvas1, scene, light, renderer, effectController;
+			var camera,	cube, tcontrol, canvas1, scene, light, renderer, settingsController, effectController;
 			var base, r1, r2, r3, r4, r5, r6, building, concrete;		
 			var T1_0, T2_0, T3_0, T4_0, T5_0, T6_0, R1, R2, R3, R4, R5, R6;
 			var X, Y, Z, camT6_0, hand, position;
@@ -319,11 +319,11 @@
 				gui.domElement.style.left = '150px';
 				gui.domElement.style.height = '250px';
 				var kinControl = gui.addFolder("Kinematic Control");
-				const settings = {
+				settingsController = {
 					modelOptions: "FK" 
 				};
 
-				const objSelector = kinControl.add(settings, 'modelOptions', ["FK", "IK"]).name("Select Kinematic Type");
+				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Kinematic Type");
 
 				objSelector.onChange(function(value) {
 					console.log("Selected:", value);
@@ -405,7 +405,7 @@
 
 				tcontrol.update();
 
-				console.log(settings);
+				console.log(settingsController);
 				
 				forwardKinematics( R1, R2, R3, R4, R5, R6 );
 				camForwardKinematics( R1, R2, R3, R4, R5, R6 );
