@@ -359,7 +359,7 @@
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
 					roboticMotion();
 				} else if(settingsController.modelOptions === 'IK') {
-					cube.detach();
+					cube.removeFromParent();
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					roboticMotion();
