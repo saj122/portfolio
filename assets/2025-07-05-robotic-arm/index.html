@@ -293,10 +293,12 @@
 						cube.position.x = 0;
 						cube.position.y = 0;
 						cube.position.z = 0;
+						cube.updateMatrix(true);
 						flag = true;
 					} else if(value === 'IK') {
 						if(flag) {
 							cube.position.copy(position6);
+							cube.updateMatrix(true);
 							flag = false;
 						}
 						inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
@@ -378,10 +380,12 @@
 					cube.position.x = 0;
 					cube.position.y = 0;
 					cube.position.z = 0;
+					cube.updateMatrix(true);
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
 					if(flag) {
 						cube.position.copy(position6);
+						cube.updateMatrix(true);
 						flag = false;
 					}
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
