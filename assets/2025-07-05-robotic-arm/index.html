@@ -241,7 +241,7 @@
 				});
 
 				cube.position.copy(position6);
-				cube.position.z += 45;
+				cube.position.z += 50;
 				cube.updateMatrix(true);
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
@@ -405,7 +405,7 @@
 
 				tcontrol.update();
 
-				console.log(cube.position);
+				console.log(settings);
 				
 				forwardKinematics( R1, R2, R3, R4, R5, R6 );
 				camForwardKinematics( R1, R2, R3, R4, R5, R6 );
