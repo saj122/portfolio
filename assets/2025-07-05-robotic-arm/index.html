@@ -242,9 +242,8 @@
 					scene.add(r6);
 				});
 
-				position7.copy(position6);
-				position7.z += 50;
-				cube.position.copy(position7);
+				cube.position.copy(position6);
+				cube.position.z += 50;
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
@@ -584,9 +583,8 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 
-				position7.copy(position6);
-				position7.z += 50;
-				cube.position.copy(position7);
+				cube.position.copy(position6);
+				cube.position.z += 50;
 				cube.updateMatrix(true);
 				
 				cameraRobot.position.copy(camposition6);
