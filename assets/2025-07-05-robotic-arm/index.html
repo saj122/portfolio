@@ -64,6 +64,8 @@
 			var camposition6 = new THREE.Vector3();
 			var camquaternion6 = new THREE.Quaternion();
 			var camscale6 = new THREE.Vector3();
+
+			var position7 = new THREE.Vector3();
 			
 			var i = 0;
 			
@@ -240,8 +242,9 @@
 					scene.add(r6);
 				});
 
-				cube.position.copy(position6);
-				cube.position.z += 60;
+				position7 = position6;
+				position7.z += 50;
+				cube.position.copy(position7);
 				cube.updateMatrix(true);
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
@@ -627,6 +630,11 @@
 				r6.quaternion.copy(quaternion6);
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
+
+				position7 = position6;
+				position7.z += 50;
+				cube.position.copy(position7);
+				cube.updateMatrix(true);
 				
 				cameraRobot.position.copy(camposition6);
 				cameraRobot.quaternion.copy(camquaternion6);
