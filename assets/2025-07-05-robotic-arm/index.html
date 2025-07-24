@@ -284,6 +284,26 @@
 				};
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
+				objSelector.onChange(function(value) {
+					if(settingsController.modelOptions === 'FK') {
+						checkDatGUI();
+						forwardKinematics( R1, R2, R3, R4, R5, R6 );
+						camForwardKinematics( R1, R2, R3, R4, R5, R6 );
+						roboticMotion();
+						cube.position.x = 0;
+						cube.position.y = 0;
+						cube.position.z = 0;
+						flag = true;
+					} else if(settingsController.modelOptions === 'IK') {
+						if(flag) {
+							cube.position.copy(position6);
+							flag = false;
+						}
+						inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
+						camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
+						roboticMotion();
+					}
+				});
 
 				var thetaControl = gui.addFolder("Theta Control");
 				thetaControl.add( effectController, "newTheta1",-180.0,180.0,0.1).name("Theta1").setValue(0.0);
