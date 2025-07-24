@@ -142,11 +142,6 @@
 				const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
 				const material = new THREE.MeshBasicMaterial( {color: 0x000000, opacity: 0.0} ); 
 				cube = new THREE.Mesh( geometry, material ); 
-				scene.add(cube);
-				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
-				tcontrol.size = 0.5;
-				tcontrol.attach(cube);
-				scene.add(tcontrol);
 			}
 						
 			function fillScene()
@@ -247,6 +242,11 @@
 
 				cube.position.copy(position6);
 				cube.position.y += 0.05;
+				scene.add(cube);
+				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
+				tcontrol.size = 0.5;
+				tcontrol.attach(cube);
+				scene.add(tcontrol);
 	
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
