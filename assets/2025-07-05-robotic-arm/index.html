@@ -242,6 +242,9 @@
 					scene.add(r6);
 				});
 
+				position7.copy(position6);
+				position7.z += 50;
+				cube.position.copy(position7);
 				scene.add(cube);
 				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
 				tcontrol.size = 0.5;
@@ -256,46 +259,6 @@
 				buildingFloormesh = new THREE.Mesh( buildingFloorgeometry, new THREE.MeshLambertMaterial( { map: concrete } ));
 				buildingFloormesh.position.z = -60;
 				scene.add( buildingFloormesh );
-				
-				/*var table = THREE.ImageUtils.loadTexture("./textures/wood.jpg");
-				var tableGeometry = new THREE.BoxGeometry(750,500,50,32);
-				table.wrapS = table.wrapT = THREE.RepeatWrapping;
-				table.repeat.set(1, 1);
-				table.anisotropy = 4;
-				var tableMesh = new THREE.Mesh( tableGeometry, new THREE.MeshLambertMaterial( { map: table } ));
-				tableMesh.position.y = 750;
-				tableMesh.position.z = 500;
-				scene.add( tableMesh );
-				
-				var tableLegsGeometry = new THREE.BoxGeometry(50,475,50,32);
-				
-				var tableLegsMesh = new THREE.Mesh( tableLegsGeometry, new THREE.MeshLambertMaterial( { map: table } ));
-				tableLegsMesh.position.x = 350;
-				tableLegsMesh.position.y = 975;
-				tableLegsMesh.position.z = 237.5;
-				tableLegsMesh.rotation.x = Math.PI/2;
-				scene.add( tableLegsMesh );
-				
-				var tableLegsMesh2 = new THREE.Mesh( tableLegsGeometry, new THREE.MeshLambertMaterial( { map: table } ));
-				tableLegsMesh2.position.x = -350;
-				tableLegsMesh2.position.y = 975;
-				tableLegsMesh2.position.z = 237.5;
-				tableLegsMesh2.rotation.x = Math.PI/2;
-				scene.add( tableLegsMesh2 );
-				
-				var tableLegsMesh3 = new THREE.Mesh( tableLegsGeometry, new THREE.MeshLambertMaterial( { map: table } ));
-				tableLegsMesh3.position.x = 350;
-				tableLegsMesh3.position.y = 525;
-				tableLegsMesh3.position.z = 237.5;
-				tableLegsMesh3.rotation.x = Math.PI/2;
-				scene.add( tableLegsMesh3 );
-				
-				var tableLegsMesh4 = new THREE.Mesh( tableLegsGeometry, new THREE.MeshLambertMaterial( { map: table } ));
-				tableLegsMesh4.position.x = -350;
-				tableLegsMesh4.position.y = 525;
-				tableLegsMesh4.position.z = 237.5;
-				tableLegsMesh4.rotation.x = Math.PI/2;
-				scene.add( tableLegsMesh4 );*/
 			}
 			
 			function setupGui() 
