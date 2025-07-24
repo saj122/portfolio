@@ -65,7 +65,7 @@
 			var camquaternion6 = new THREE.Quaternion();
 			var camscale6 = new THREE.Vector3();
 
-			var position7 = new THREE.Vector3();
+			var flag = false;
 			
 			var i = 0;
 			
@@ -358,7 +358,12 @@
 					cube.position.x = 0;
 					cube.position.y = 0;
 					cube.position.z = 0;
+					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
+					if(flag) {
+						cube.position.copy(position6);
+						flag = false;
+					}
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					roboticMotion();
