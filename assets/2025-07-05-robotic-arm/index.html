@@ -242,6 +242,7 @@
 					scene.add(r6);
 				});
 
+
 				cube.position.copy(position6);
 				cube.position.z += 50;
 				scene.add(cube);
@@ -352,13 +353,13 @@
 			function render() 
 			{						
 				if(settingsController.modelOptions === 'FK') {
+					cube.attach(r6);
 					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
 					roboticMotion();
-					cube.position.copy(position6);
-				    cube.position.z += 50;
 				} else if(settingsController.modelOptions === 'IK') {
+					cube.detach();
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					roboticMotion();
@@ -585,6 +586,7 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 			
+				camposition6.z -= 10;
 				cameraRobot.position.copy(camposition6);
 				cameraRobot.quaternion.copy(camquaternion6);
 				cameraRobot.scale.copy(camscale6);
