@@ -371,10 +371,13 @@
 						position6.z = 1200;
 						cube.position.copy(position6);
 						cube.updateMatrix(true);
+						inverseKinematics(600, 0, 1200);
+						camInverseKinematics(600, 0, 1200);
 						flag = false;
+					} else {
+						inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
+						camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					}
-					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
-					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
 				roboticMotion();
 			
