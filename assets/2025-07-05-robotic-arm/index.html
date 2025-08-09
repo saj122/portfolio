@@ -281,7 +281,7 @@
 				gui.domElement.style.height = '250px';
 				var kinControl = gui.addFolder("Kinematic Control");
 				settingsController = {
-					modelOptions: "FK" 
+					modelOptions: "IK" 
 				};
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
@@ -363,11 +363,16 @@
 					cube.position.y = 0;
 					cube.position.z = 0;
 					cube.updateMatrix(true);
-					console.log(position6);
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
-					cube.position.copy(position6);
-					cube.updateMatrix(true);
+					if(flag) {
+						position6.x = 600;
+						position6.y = 0;
+						position6.z = 1200;
+						cube.position.copy(position6);
+						cube.updateMatrix(true);
+						flag = false;
+					}
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
