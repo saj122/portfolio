@@ -235,6 +235,8 @@
 					r6.name = "r6";
 					r6.matrixAutoUpdate = false;
 					r6.position.copy(position6);
+					cube.position.copy(position6);
+					cube.updateMatrix(true);
 					r6.quaternion.copy(quaternion6);
 					r6.scale.copy(scale6);
 					r6.updateMatrix(true);
@@ -365,7 +367,7 @@
 						cube.updateMatrix(true);
 						flag = false;
 					} 
-					
+					console.log(cube.position);
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
