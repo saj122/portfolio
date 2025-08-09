@@ -360,7 +360,7 @@
 					cube.visible = false;
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
-					cube.visible = false;
+					cube.visible = true;
 					cube.position.copy(position6);
 					cube.updateMatrix(true);
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
