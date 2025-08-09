@@ -637,21 +637,6 @@
 
 		};
 
-		this.hide = function () {
-			this.traverse(function( child ) {
-				child.visible = false;
-			});
-		};
-
-		this.show = function () {
-			this.traverse(function( child ) {
-				child.visible = true;
-				if (child.parent == scope.pickers ) child.visible = showPickers;
-				if (child.parent == scope.planes ) child.visible = false;
-			});
-			this.activePlane.visible = showActivePlane;
-		};
-
 		this.detach = function ( object ) {
 
 			scope.object = undefined;

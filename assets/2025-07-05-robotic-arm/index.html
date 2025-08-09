@@ -355,11 +355,9 @@
 					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
-					tcontrol.show();
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
 					if(flag) {
-						tcontrol.hide();
 						position6.x = 600.0;
 						position6.y = 0.0;
 						position6.z = 1200.0;
