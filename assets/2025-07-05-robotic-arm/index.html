@@ -286,7 +286,7 @@
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
 				objSelector.onChange(function(value) {
-					render();
+					animate();
 				});
 
 				var thetaControl = gui.addFolder("Theta Control");
@@ -353,7 +353,8 @@
 			}
 			
 			function render() 
-			{						
+			{				
+				console.log(settingsController.modelOptions);		
 				if(settingsController.modelOptions === 'FK') {
 					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
@@ -595,8 +596,8 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 			
-				camposition6.z -= 50;
 				cameraRobot.position.copy(camposition6);
+				cameraRobot.position.z -= 50;
 				cameraRobot.quaternion.copy(camquaternion6);
 				cameraRobot.scale.copy(camscale6);
 				cameraRobot.updateMatrix(true);
