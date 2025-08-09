@@ -375,6 +375,8 @@
 						camInverseKinematics(600, 0, 1200);
 						flag = false;
 					} else {
+						cube.position.copy(position6);
+						cube.updateMatrix(true);
 						inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 						camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					}
