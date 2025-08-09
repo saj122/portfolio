@@ -361,10 +361,17 @@
 					tcontrol.visible = false;
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
-					cube.visible = true;
-					tcontrol.visible = true;
-					cube.position.copy(position6);
-					cube.updateMatrix(true);
+					if(flag) {
+						cube.visible = true;
+						tcontrol.visible = true;
+						position6.x = 600.0;
+						position6.y = 0.0;
+						position6.z = 1200.0;
+						cube.position.copy(position6);
+						cube.updateMatrix(true);
+						flag = false;
+					} 
+					
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
