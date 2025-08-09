@@ -73,7 +73,6 @@
 			fillScene();
 			forwardKinematics(0,90*(Math.PI/180),0,0,90*(Math.PI/180),-90*(Math.PI/180));
 			camForwardKinematics(0,90*(Math.PI/180),0,0,90*(Math.PI/180),-90*(Math.PI/180));
-			roboticMotion();
 			setupGui();
 			drawHelpers();
 			animate();
@@ -354,32 +353,18 @@
 			
 			function render() 
 			{				
-				console.log(settingsController.modelOptions);		
 				if(settingsController.modelOptions === 'FK') {
 					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
-					cube.position.x = 0;
-					cube.position.y = 0;
-					cube.position.z = 0;
-					cube.updateMatrix(true);
+					cube.visible = false;
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
-					if(flag) {
-						position6.x = 600;
-						position6.y = 0;
-						position6.z = 1200;
-						cube.position.copy(position6);
-						cube.updateMatrix(true);
-						inverseKinematics(600, 0, 1200);
-						camInverseKinematics(600, 0, 1200);
-						flag = false;
-					} else {
-						cube.position.copy(position6);
-						cube.updateMatrix(true);
-						inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
-						camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
-					}
+					cube.visible = false;
+					cube.position.copy(position6);
+					cube.updateMatrix(true);
+					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
+					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
 				roboticMotion();
 			
