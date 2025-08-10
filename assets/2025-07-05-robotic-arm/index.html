@@ -64,8 +64,6 @@
 			var camposition6 = new THREE.Vector3();
 			var camquaternion6 = new THREE.Quaternion();
 			var camscale6 = new THREE.Vector3();
-
-			var flag = true;
 			
 			var i = 0;
 			
@@ -144,6 +142,12 @@
 				const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
 				const material = new THREE.MeshBasicMaterial( {color: 0x000000, opacity: 0.0} ); 
 				cube = new THREE.Mesh( geometry, material ); 
+
+				scene.add(cube);
+				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
+				tcontrol.size = 0.5;
+				tcontrol.attach(cube);
+				scene.add(tcontrol);
 			}
 						
 			function fillScene()
@@ -242,14 +246,6 @@
 					scene.add(r6);
 				});
 
-				cube.position.copy(position6);
-				cube.updateMatrix(true);
-				scene.add(cube);
-				tcontrol = new THREE.TransformControls( camera, renderer.domElement );
-				tcontrol.size = 0.5;
-				tcontrol.attach(cube);
-				scene.add(tcontrol);
-
 			    concrete = THREE.ImageUtils.loadTexture("./textures/concrete.jpg");
 				buildingFloorgeometry = new THREE.BoxGeometry(10000,10000,100,32);
 				concrete.wrapS = concrete.wrapT = THREE.RepeatWrapping;
@@ -281,7 +277,7 @@
 				gui.domElement.style.height = '250px';
 				var kinControl = gui.addFolder("Kinematic Control");
 				settingsController = {
-					modelOptions: "IK" 
+					modelOptions: "FK" 
 				};
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
@@ -360,12 +356,14 @@
 				if(settingsController.modelOptions === 'FK') {
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
-					flag = true;
+					cube.position.z -= 10000;
+					cube.position.copy(position6);
+					cube.updateMatrix(true);
 				} else if(settingsController.modelOptions === 'IK') {
 					cube.position.z -= 50;
 					cube.position.copy(position6);
-					console.log(cube.position);
 					cube.updateMatrix(true);
+					console.log(cube.position);
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
