@@ -352,18 +352,10 @@
 			{	
 				checkDatGUI();	
 				tcontrol.update();
-				roboticMotion();		
 				if(settingsController.modelOptions === 'FK') {
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
-					cube.position.z -= 10000;
-					cube.position.copy(position6);
-					cube.updateMatrix(true);
 				} else if(settingsController.modelOptions === 'IK') {
-					cube.position.z -= 50;
-					cube.position.copy(position6);
-					cube.updateMatrix(true);
-					console.log(cube.position);
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
@@ -589,7 +581,17 @@
 				r6.quaternion.copy(quaternion6);
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
-			
+
+				if(settingsController.modelOptions === 'FK') {
+					cube.position.copy(position6);
+					cube.position.z -= 10000;
+					cube.updateMatrix(true);
+				} else if(settingsController.modelOptions === 'IK') {
+					cube.position.copy(position6);
+					cube.position.z -= 50;
+					cube.updateMatrix(true);
+				}
+				
 				cameraRobot.position.copy(camposition6);
 				cameraRobot.quaternion.copy(camquaternion6);
 				cameraRobot.scale.copy(camscale6);
