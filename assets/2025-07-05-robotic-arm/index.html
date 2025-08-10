@@ -64,6 +64,8 @@
 			var camposition6 = new THREE.Vector3();
 			var camquaternion6 = new THREE.Quaternion();
 			var camscale6 = new THREE.Vector3();
+
+			var flag = false;
 			
 			var i = 0;
 			
@@ -355,7 +357,16 @@
 				if(settingsController.modelOptions === 'FK') {
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
+					cube.position.z = 10000;
+					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
+					if(flag) {
+						cube.position.x = 600;
+						cube.position.y = 0;
+						cube.position.z = 1200;
+						flag = false;
+					}
+					
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
@@ -582,16 +593,6 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 
-				if(settingsController.modelOptions === 'FK') {
-					cube.position.copy(position6);
-					cube.position.z -= 10000;
-					cube.updateMatrix(true);
-				} else if(settingsController.modelOptions === 'IK') {
-					cube.position.copy(position6);
-					cube.position.z -= 50;
-					cube.updateMatrix(true);
-				}
-				
 				cameraRobot.position.copy(camposition6);
 				cameraRobot.quaternion.copy(camquaternion6);
 				cameraRobot.scale.copy(camscale6);
