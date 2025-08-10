@@ -283,12 +283,6 @@
 				};
 
 				const objSelector = kinControl.add(settingsController, 'modelOptions', ["FK", "IK"]).name("Select Type");
-				objSelector.onChange(function(value) {
-					render();
-					roboticMotion();
-					render();
-					roboticMotion();
-				});
 
 				var thetaControl = gui.addFolder("Theta Control");
 				thetaControl.add( effectController, "newTheta1",-180.0,180.0,0.1).name("Theta1").setValue(0.0);
@@ -308,7 +302,6 @@
 			{						
 				requestAnimationFrame( animate );
 				render();
-				stats.update(); 
 			}
 			
 			function checkDatGUI()
@@ -355,7 +348,6 @@
 			
 			function render() 
 			{	
-				roboticMotion();
 				stats.update(); 
 				if(settingsController.modelOptions === 'FK') {
 					checkDatGUI();
@@ -370,10 +362,10 @@
 						cube.position.z = 1200;
 						flag = false;
 					}
-					tcontrol.update();
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
+				tcontrol.update();
 				roboticMotion();
 			
 				renderer.enableScissorTest( false );
@@ -596,6 +588,8 @@
 				r6.quaternion.copy(quaternion6);
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
+
+				cube.updateMatrix(true);
 
 				camposition6.z -= 50;
 				cameraRobot.position.copy(camposition6);
