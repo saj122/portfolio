@@ -361,10 +361,10 @@
 					flag = true;
 				} else if(settingsController.modelOptions === 'IK') {
 					if(flag) {
-						cube.position.copy(position6);
-						cube.updateMatrix(true);
 						forwardKinematics( R1, R2, R3, R4, R5, R6 );
 						camForwardKinematics( R1, R2, R3, R4, R5, R6 );
+						cube.updateMatrix(true);
+						console.log(cube.position);
 						flag = false;
 					} 
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
@@ -593,8 +593,6 @@
 				r6.scale.copy(scale6);
 				r6.updateMatrix(true);
 
-				cube.position.copy(position6);
-				console.log(cube.position);
 				cube.updateMatrix(true);
 			
 				cameraRobot.position.copy(camposition6);
