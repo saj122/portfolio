@@ -286,6 +286,8 @@
 				objSelector.onChange(function(value) {
 					render();
 					roboticMotion();
+					render();
+					roboticMotion();
 				});
 
 				var thetaControl = gui.addFolder("Theta Control");
@@ -353,9 +355,10 @@
 			
 			function render() 
 			{	
-				checkDatGUI();	
-				tcontrol.update();
+				roboticMotion();
+				stats.update(); 
 				if(settingsController.modelOptions === 'FK') {
+					checkDatGUI();
 					forwardKinematics( R1, R2, R3, R4, R5, R6 );
 					camForwardKinematics( R1, R2, R3, R4, R5, R6 );
 					cube.position.z = 10000;
@@ -367,7 +370,7 @@
 						cube.position.z = 1200;
 						flag = false;
 					}
-					
+					tcontrol.update();
 					inverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 					camInverseKinematics(cube.position.x, cube.position.y, cube.position.z);
 				}
